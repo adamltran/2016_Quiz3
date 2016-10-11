@@ -1,7 +1,7 @@
 package TrianglePackage;
 
 import java.util.*;
-
+import Exceptionpkg.TriangleException;;
 public class Triangle extends GeometricObject {
 
 	private double side1 = 1.0;
@@ -11,7 +11,7 @@ public class Triangle extends GeometricObject {
 	//Attributes converted into strings
 	private String sideOne = String.valueOf(getSide1());
 	private String sideTwo = String.valueOf(getSide2());
-	private String sideThree = String.valueOf(getSide3());; // toString()
+	private String sideThree = String.valueOf(getSide3());; 
 	private String perimeter = String.valueOf(getPerimeter());
 	private String area = String.valueOf(getArea());
 
@@ -24,11 +24,20 @@ public class Triangle extends GeometricObject {
 	}
 
 	//Triangle Constructor With Specified Sides
-	public Triangle(double side1, double side2, double side3) { // Triangle with
-		this();                                                 // 3 args
-		this.side1 = side1;
-		this.side2 = side2;
-		this.side3 = side3;
+	public Triangle(double side1, double side2, double side3) throws TriangleException { 
+		this(); 
+		Triangle turnt = new Triangle();
+		
+		if ((turnt.getArea() == 0) || ((side1 < 0) || (side2 < 0) || (side3 < 0))) {
+			throw new TriangleException("Invalid values for side(s).");
+		}
+		else {
+			                                                
+			this.side1 = side1;
+			this.side2 = side2;
+			this.side3 = side3;
+			
+		}
 	}
 
 	//Getter For Side1
@@ -68,5 +77,5 @@ public class Triangle extends GeometricObject {
 		return "Side1: " + " " + sideOne + " " + "Side2: " + " " + sideTwo + " " + "Side3: " + " " + sideThree + " "
 				+ "Perimeter: " + " " + perimeter + " " + "Area: " + " " + area;
 	}
-
+	
 }
